@@ -41,6 +41,7 @@ module Aws
     #   traces are sent to this object.  You can specify something
     #   like $stdout.
     def initialize options = {}
+      @from_identity = true
       @retries = options[:retries] || 5
       @ip_address = options[:ip_address] || '169.254.169.254'
       @port = options[:port] || 80
@@ -53,6 +54,8 @@ module Aws
     # @return [Integer] The number of times to retry failed atttempts to
     #   fetch credentials from the instance metadata service. Defaults to 0.
     attr_reader :retries
+
+    attr_reader :from_identity
 
     private
 
