@@ -4,7 +4,7 @@ require "openssl"
 module Aws
   module Signers
     module Cfn
-      class V1 < Base
+      class CfnV1 < Base
         def sign(http_request)
           http_request.headers["Authorization"] = authorization
           http_request
