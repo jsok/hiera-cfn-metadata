@@ -1,3 +1,5 @@
+[![Gem Version Badge](https://img.shields.io/gem/v/hiera-cfn-metadata.svg)](https://rubygems.org/gems/hiera-cfn-metadata)
+
 # hiera-cfn-metadata
 
 A Hiera backend for retrieving CloudFormation resource metadata and parsing it as a JSON data source.
