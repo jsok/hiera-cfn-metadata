@@ -74,9 +74,7 @@ module Aws
       failed_attempts = 0
       begin
         open_connection do |conn|
-          path = "/latest/dynamic/instance-identity/#{path}"
-          profile_name = http_get(conn, path).lines.first.strip
-          http_get(conn, path + profile_name)
+          http_get(conn, "/latest/dynamic/instance-identity/#{path}")
         end
       rescue *FAILURES
         if failed_attempts < @retries
