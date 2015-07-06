@@ -34,7 +34,7 @@ class Hiera
         end
       end
 
-      def lookup(key, scope, order_override, resolution_type, context)
+      def lookup(key, scope, order_override, resolution_type)
         answer = nil
         found = false
 
@@ -53,8 +53,8 @@ class Hiera
           # the array
           #
           # for priority searches we break after the first found data item
-          new_answer = Backend.parse_answer(data[key], scope, {}, context)
-          case resolution_type.is_a?(Hash) ? :hash : resolution_type
+          new_answer = Backend.parse_answer(data[key], scope)
+          case resolution_type
           when :array
             raise Exception, "[hiera-cfn-metadata] Hiera type mismatch for key '#{key}': expected Array and got #{new_answer.class}" unless new_answer.kind_of? Array or new_answer.kind_of? String
             answer ||= []
@@ -62,7 +62,7 @@ class Hiera
           when :hash
             raise Exception, "[hiera-cfn-metadata] Hiera type mismatch for key '#{key}': expected Hash and got #{new_answer.class}" unless new_answer.kind_of? Hash
             answer ||= {}
-            answer = Backend.merge_answer(new_answer, answer, resolution_type)
+            answer = Backend.merge_answer(new_answer, answer)
           else
             answer = new_answer
             break
