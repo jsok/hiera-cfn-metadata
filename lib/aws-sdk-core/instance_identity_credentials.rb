@@ -63,7 +63,7 @@ module Aws
       doc = get_instance_identity('document')
       sig = get_instance_identity('signature')
       @credentials = Credentials.new(
-        Base64.encode64(doc),
+        Base64.encode64(doc).delete("\n"),
         sig.delete("\n")
       )
       # Pretend that it expires in an hour
