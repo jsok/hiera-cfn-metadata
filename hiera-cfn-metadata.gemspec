@@ -3,7 +3,7 @@ require 'rubygems/package_task'
 
 spec = Gem::Specification.new do |gem|
     gem.name = "hiera-cfn-metadata"
-    gem.version = "0.0.3"
+    gem.version = "0.0.4"
     gem.license = "Apache-2.0"
     gem.summary = "Module for using CloudFormation resource metadata as a hiera backend"
     gem.email = "jonathan.sokolowski@gmail.com"

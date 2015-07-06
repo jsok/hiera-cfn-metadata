@@ -44,7 +44,7 @@ class Hiera
           Hiera.debug("[hiera-cfn-metadata] Looking for data source #{source}")
 
           data = @datasources[source]
-          next if data.empty?
+          next if data.nil?
           next unless data.include?(key)
 
           # for array resolution we just append to the array whatever
