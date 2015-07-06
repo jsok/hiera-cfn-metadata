@@ -36,7 +36,7 @@ class Hiera
 
       def lookup(key, scope, order_override, resolution_type)
         answer = nil
-        found = false
+        return answer if @datasources.nil?
 
         Hiera.debug("[hiera-cfn-metadata] Looking up #{key}")
 
@@ -44,9 +44,8 @@ class Hiera
           Hiera.debug("[hiera-cfn-metadata] Looking for data source #{source}")
 
           data = @datasources[source]
-          next if section.nil? or data.empty?
+          next if data.empty?
           next unless data.include?(key)
-          found = true
 
           # for array resolution we just append to the array whatever
           # we find, we then goes onto the next file and keep adding to
@@ -68,7 +67,7 @@ class Hiera
             break
           end
         end
-        throw :no_such_key unless found
+
         return answer
       end
 
